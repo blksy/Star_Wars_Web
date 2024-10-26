@@ -1,3 +1,11 @@
+export interface User {
+  id: string | number;
+  name: string;
+  nickname: string;
+  email: string;
+  password: string;
+}
+
 export interface Character {
   name: string;
   height: string;
