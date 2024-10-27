@@ -6,9 +6,11 @@ import {
   QueryCache,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import NavBar from "./nav/NavBar";
 import ROUTES from "./routes";
 import "./App.css";
 
+const Home = lazy(() => import("./pages/Home/Home"));
 const Register = lazy(() => import("./pages/Register/Register"));
 const Login = lazy(() => import("./pages/Login/Login"));
 const Characters = lazy(() => import("./pages/Characters/Characters"));
@@ -41,9 +43,11 @@ function App() {
       {process.env.NODE_ENV === "development" && (
         <ReactQueryDevtools position="bottom" initialIsOpen={false} />
       )}
+      <NavBar />
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
+            <Route path={ROUTES.home} element={<Home />} />
             <Route path={ROUTES.register} element={<Register />} />
             <Route path={ROUTES.login} element={<Login />} />
             <Route path={ROUTES.characters} element={<Characters />} />
@@ -51,7 +55,7 @@ function App() {
               path={ROUTES.characterDetails(":id")}
               element={<CharacterDetails />}
             />
-            <Route path={ROUTES.login} element={<Movies />} />
+            <Route path={ROUTES.movies} element={<Movies />} />
             <Route
               path={ROUTES.movieDetails(":id")}
               element={<MovieDetails />}
@@ -76,7 +80,6 @@ function App() {
               path={ROUTES.vehicleDetails(":id")}
               element={<VehicleDetails />}
             />
-            <div>Hello</div>
           </Routes>
         </Suspense>
       </BrowserRouter>
