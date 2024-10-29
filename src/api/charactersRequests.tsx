@@ -21,10 +21,10 @@ export const fetchCharacterDetails = async (id: string) => {
     birth_year: data.birth_year,
     gender: data.gender,
     homeworld: data.homeworld,
-    films: data.films.map((film: any) => film.films.name),
-    species: data.species.map((spieces: any) => spieces.species.name),
-    vehicles: data.vehicles.map((vehicle: any) => vehicle.vehicle.name),
-    starships: data.starships.map((starship: any) => starship.starship.name),
+    films: data.films.map((film: string) => film.films.name),
+    species: data.species.map((spieces: string) => spieces.species.name),
+    vehicles: data.vehicles.map((vehicle: string) => vehicle.vehicle.name),
+    starships: data.starships.map((starship: string) => starship.starship.name),
     url: data.url,
   };
 };

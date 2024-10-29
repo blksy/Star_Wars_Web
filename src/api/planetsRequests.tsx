@@ -21,8 +21,8 @@ export const fetchPlanetDetails = async (id: string) => {
     terrain: data.terrain,
     surface_water: data.surface_water,
     population: data.population,
-    residents: data.residents.map((resident: any) => resident.resident.name),
-    films: data.films.map((film: any) => film.film.name),
+    residents: data.residents.map((resident: string) => resident.resident.name),
+    films: data.films.map((film: string) => film.film.name),
     url: data.url,
   };
 };

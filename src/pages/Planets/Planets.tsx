@@ -1,3 +1,3 @@
 export default function Planets() {
-  return <div></div>;
+  return <div>Planets</div>;
 }

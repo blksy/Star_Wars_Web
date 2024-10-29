@@ -23,8 +23,8 @@ export const fetchVehicleDetails = async (id: string) => {
     cargo_capacity: data.cargo_capacity,
     consumables: data.consumables,
     vehicle_class: data.vehicle_class,
-    pilots: data.pilots.map((pilot: any) => pilot.pilot.name),
-    films: data.films.map((film: any) => film.film.name),
+    pilots: data.pilots.map((pilot: string) => pilot.pilot.name),
+    films: data.films.map((film: string) => film.film.name),
     url: data.url,
   };
 };

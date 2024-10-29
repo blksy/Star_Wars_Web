@@ -23,10 +23,10 @@ const Planets = lazy(() => import("./pages/Planets/Planets"));
 const PlanetDetails = lazy(() => import("./pages/Planets/PlanetDetails"));
 const Species = lazy(() => import("./pages/Species/Species"));
 const SpeciesDetails = lazy(() => import("./pages/Species/SpeciesDetails"));
-const Starships = lazy(() => import("./pages/Species/SpeciesDetails"));
-const StarshipDetails = lazy(() => import("./pages/Species/SpeciesDetails"));
-const Vehicles = lazy(() => import("./pages/Species/SpeciesDetails"));
-const VehicleDetails = lazy(() => import("./pages/Species/SpeciesDetails"));
+const Starships = lazy(() => import("./pages/Starships/Starships"));
+const StarshipDetails = lazy(() => import("./pages/Starships/StarshipDetails"));
+const Vehicles = lazy(() => import("./pages/Vehicles/Vehicles"));
+const VehicleDetails = lazy(() => import("./pages/Vehicles/VehicleDetails"));
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -43,8 +43,8 @@ function App() {
       {process.env.NODE_ENV === "development" && (
         <ReactQueryDevtools position="bottom" initialIsOpen={false} />
       )}
-      <NavBar />
       <BrowserRouter>
+        <NavBar />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path={ROUTES.home} element={<Home />} />

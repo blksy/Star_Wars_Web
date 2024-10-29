@@ -1,3 +1,3 @@
 export default function Starships() {
-  return <div></div>;
+  return <div>Starships</div>;
 }

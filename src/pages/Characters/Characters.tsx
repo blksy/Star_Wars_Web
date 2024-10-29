@@ -1,3 +1,3 @@
 export default function Characters() {
-  return <div></div>;
+  return <div>Characters</div>;
 }

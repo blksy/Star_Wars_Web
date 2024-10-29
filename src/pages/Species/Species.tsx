@@ -1,3 +1,3 @@
 export default function Species() {
-  return <div></div>;
+  return <div>Species</div>;
 }

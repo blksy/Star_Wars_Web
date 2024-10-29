@@ -22,8 +22,8 @@ export const fetchSpeciesDetails = async (id: string) => {
     average_lifespan: data.average_lifespan,
     homeworld: data.homeworld,
     language: data.language,
-    people: data.people.map((person: any) => person.person.name),
-    films: data.films.map((film: any) => film.film.name),
+    people: data.people.map((person: string) => person.person.name),
+    films: data.films.map((film: string) => film.film.name),
     url: data.url,
   };
 };

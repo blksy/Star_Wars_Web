@@ -25,8 +25,8 @@ export const fetchStarshipDetails = async (id: string) => {
     hyperdrive_rating: data.hyperdrive_rating,
     MGLT: data.MGLT,
     starship_class: data.starship_class,
-    pilots: data.pilots.map((pilot: any) => pilot.pilot.name),
-    films: data.films.map((film: any) => film.film.name),
+    pilots: data.pilots.map((pilot: string) => pilot.pilot.name),
+    films: data.films.map((film: string) => film.film.name),
     url: data.url,
   };
 };
