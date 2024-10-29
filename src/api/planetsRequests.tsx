@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Planet } from "../interfaces/interfaces";
-
-const API_BASE_URL = "https://swapi.dev/api/";
+import { API_BASE_URL } from "./baseURL";
 
 export const fetchPlanets = async (): Promise<Planet[]> => {
   const { data } = await axios.get<{ results: Planet[] }>(

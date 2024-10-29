@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Vehicle } from "../interfaces/interfaces";
-
-const API_BASE_URL = "https://swapi.dev/api/";
+import { API_BASE_URL } from "./baseURL";
 
 export const fetchVehicles = async (): Promise<Vehicle[]> => {
   const { data } = await axios.get<{ results: Vehicle[] }>(

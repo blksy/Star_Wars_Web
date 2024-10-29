@@ -1,7 +1,6 @@
 import axios from "axios";
+import { API_BASE_URL } from "./baseURL";
 import { Species } from "../interfaces/interfaces";
-
-const API_BASE_URL = "https://swapi.dev/api/";
 
 export const fetchSpecies = async (): Promise<Species[]> => {
   const { data } = await axios.get<{ results: Species[] }>(
