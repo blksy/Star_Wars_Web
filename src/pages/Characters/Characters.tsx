@@ -5,6 +5,7 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 
 interface Character {
+  id: string;
   name: string;
   height: string;
   mass: string;

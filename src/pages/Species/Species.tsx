@@ -5,6 +5,7 @@ import style from "./Species.module.css";
 import Button from "../../components/Button/Button";
 
 interface Species {
+  id: string;
   name: string;
   classification: string;
   designation: string;

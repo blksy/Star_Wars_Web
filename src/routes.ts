@@ -7,7 +7,7 @@ const ROUTES = {
   planets: "/planets",
   planetDetails: (id: number | string) => `/planets/${id}`,
   movies: "/movies",
-  movieDetails: (id: number | string) => `/movies/${id}`,
+  movieDetails: (title: string) => `/movies/${title}`,
   species: "/species",
   speciesDetails: (id: number | string) => `/species/${id}`,
   starships: "/starships",

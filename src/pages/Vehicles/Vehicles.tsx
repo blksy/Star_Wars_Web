@@ -5,6 +5,7 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 
 interface Vehicle {
+  id: string;
   name: string;
   model: string;
   manufacturer: string;
