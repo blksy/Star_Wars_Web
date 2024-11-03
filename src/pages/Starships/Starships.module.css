@@ -1,4 +1,25 @@
 .container {
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-left: 30px;
+  margin-top: 80px;
+  gap: 20px;
+}
+.btnWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 80px;
+}
+.load {
+  color: white;
+  font-size: 50px;
+  padding-left: 300px;
+}
+.page {
+  color: white;
+  font-size: 40px;
+  margin-left: 20px;
 }
