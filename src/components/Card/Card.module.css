@@ -1,0 +1,26 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  max-width: 300px;
+  max-height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 1s;
+  border: 1px solid yellow;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.listItem {
+  margin-bottom: 8px;
+  font-size: 15px;
+  list-style: none;
+  padding-left: 25px;
+}
+
+h2 {
+  font-size: 30px;
+  padding-left: 40px;
+}
