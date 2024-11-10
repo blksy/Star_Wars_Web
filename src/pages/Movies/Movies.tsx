@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ROUTES from "../../routes";
 
 interface Movie {
+  id: string;
   title: string;
   director: string;
   producer: string;
@@ -36,7 +37,7 @@ export default function Movies() {
     <>
       <div className={style.container}>
         {movies.map((movie) => (
-          <Link key={movie.title} to={ROUTES.movieDetails(movie.title)}>
+          <Link key={movie.id} to={ROUTES.movieDetails(movie.id)}>
             <Card
               title={movie.title}
               details={{

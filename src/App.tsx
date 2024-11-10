@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import {
   QueryClient,
@@ -8,7 +8,9 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NavBar from "./nav/NavBar";
 import ROUTES from "./routes";
+import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
+import ErrorBoundary from "./errorBoundary/ErrorBoundary";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Register = lazy(() => import("./pages/Register/Register"));
@@ -37,52 +39,228 @@ const queryClient = new QueryClient({
   },
 });
 
+function MainContent() {
+  const location = useLocation();
+
+  return (
+    <>
+      <NavBar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path={ROUTES.home}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Home />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.register}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Register />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.login}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Login />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.characters}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Characters />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.characterDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <CharacterDetails />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.movies}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Movies />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.movieDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <MovieDetails />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.planets}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Planets />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.planetDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <PlanetDetails />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.species}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Species />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.speciesDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <SpeciesDetails />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.starships}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Starships />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.starshipDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <StarshipDetails />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.vehicles}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <Vehicles />
+                </motion.div>
+              }
+            />
+            <Route
+              path={ROUTES.vehicleDetails(":id")}
+              element={
+                <motion.div
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 1 }}
+                >
+                  <VehicleDetails />
+                </motion.div>
+              }
+            />
+          </Routes>
+        </AnimatePresence>
+      </Suspense>
+    </>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {process.env.NODE_ENV === "development" && (
         <ReactQueryDevtools position="bottom" initialIsOpen={false} />
       )}
-      <BrowserRouter>
-        <NavBar />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path={ROUTES.home} element={<Home />} />
-            <Route path={ROUTES.register} element={<Register />} />
-            <Route path={ROUTES.login} element={<Login />} />
-            <Route path={ROUTES.characters} element={<Characters />} />
-            <Route
-              path={ROUTES.characterDetails(":id")}
-              element={<CharacterDetails />}
-            />
-            <Route path={ROUTES.movies} element={<Movies />} />
-            <Route
-              path={ROUTES.movieDetails(":id")}
-              element={<MovieDetails />}
-            />
-            <Route path={ROUTES.planets} element={<Planets />} />
-            <Route
-              path={ROUTES.planetDetails(":id")}
-              element={<PlanetDetails />}
-            />
-            <Route path={ROUTES.species} element={<Species />} />
-            <Route
-              path={ROUTES.speciesDetails(":id")}
-              element={<SpeciesDetails />}
-            />
-            <Route path={ROUTES.starships} element={<Starships />} />
-            <Route
-              path={ROUTES.starshipDetails(":id")}
-              element={<StarshipDetails />}
-            />
-            <Route path={ROUTES.vehicles} element={<Vehicles />} />
-            <Route
-              path={ROUTES.vehicleDetails(":id")}
-              element={<VehicleDetails />}
-            />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <MainContent />
+        </BrowserRouter>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 }
