@@ -8,13 +8,15 @@ export const FormInput = ({
   formik,
   accessor,
   label,
+  className,
 }: {
   formik: FormikProps<FormValues>;
   accessor: keyof FormValues;
   label: string;
+  className?: string;
 }) => {
   return (
-    <div>
+    <div className={className}>
       <TextField
         error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
         helperText={

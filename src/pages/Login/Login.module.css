@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  display: flex;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 300px;
+  cursor: pointer;
+}
+.label {
+  border: 2px solid white;
+  width: 600px;
+  margin: 25px;
+}
+
+span {
+  color: white;
+  font-size: 20px;
+}
+.header {
+  margin: 20px;
+}
+
+.label:hover {
+  cursor: pointer;
+  color: yellow;
+  border: 1px solid yellow;
+  transform: scale(1.1);
+  transition: 1s;
+}

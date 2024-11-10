@@ -31,7 +31,7 @@ export default function Starships() {
       }
     };
     getStarships();
-  });
+  }, []);
 
   if (loading) return <p className={style.load}>Loading...</p>;
 

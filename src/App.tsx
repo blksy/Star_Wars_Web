@@ -10,7 +10,7 @@ import NavBar from "./nav/NavBar";
 import ROUTES from "./routes";
 import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
-import ErrorBoundary from "./errorBoundary/ErrorBoundary";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Register = lazy(() => import("./pages/Register/Register"));
