@@ -38,7 +38,7 @@ export default function Planets() {
       <div className={style.container}>
         {planets.map((planet) => (
           <Card
-            key={planet.name}
+            key={planet.name || planet.id}
             title={planet.name}
             details={{
               Diameter: planet.diameter,

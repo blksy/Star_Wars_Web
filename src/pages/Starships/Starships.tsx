@@ -40,7 +40,7 @@ export default function Starships() {
       <div className={style.container}>
         {starships.map((starship) => (
           <Card
-            key={starship.name}
+            key={starship.name || starship.id}
             title={starship.name}
             details={{
               Model: starship.model,

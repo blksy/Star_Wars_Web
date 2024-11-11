@@ -37,7 +37,10 @@ export default function Movies() {
     <>
       <div className={style.container}>
         {movies.map((movie) => (
-          <Link key={movie.id} to={ROUTES.movieDetails(movie.id)}>
+          <Link
+            key={movie.id || movie.title}
+            to={ROUTES.movieDetails(movie.id)}
+          >
             <Card
               title={movie.title}
               details={{

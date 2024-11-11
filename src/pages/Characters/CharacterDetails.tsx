@@ -6,16 +6,16 @@ import Button from "../../components/Button/Button";
 import ROUTES from "../../routes";
 
 export default function CharacterDetails() {
-  const { characterName } = useParams<{ characterName: string }>();
+  const { characterId } = useParams<{ characterId: string }>();
 
   const {
     data: characterDetails,
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["character", characterName],
-    queryFn: () => fetchCharacterDetails(characterName),
-    enabled: !!characterName,
+    queryKey: ["character", characterId],
+    queryFn: () => fetchCharacterDetails(characterId),
+    enabled: !!characterId,
   });
 
   if (isLoading) {

@@ -3,7 +3,7 @@ const ROUTES = {
   login: "/login",
   register: "/register",
   characters: "/characters",
-  characterDetails: (name: string) => `/characters/${name}`,
+  characterDetails: (id: string) => `/characters/${id}`,
   planets: "/planets",
   planetDetails: (id: string) => `/planets/${id}`,
   movies: "/movies",

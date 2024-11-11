@@ -3,7 +3,6 @@ import { supabase } from "../database/supabase";
 import { User } from "../interfaces/interfaces";
 
 const createUser = async (user: User) => {
-  //check if user exists
   const { data: userWithUsername } = await supabase
     .from("users")
     .select("*")
@@ -22,17 +21,18 @@ const createUser = async (user: User) => {
   if (signUpError) {
     throw signUpError;
   }
+
   return data;
 };
 
-export default function useCreateUser(user: User) {
-  return useMutation(() => createUser(user), {
+export default function useCreateUser() {
+  return useMutation((user: User) => createUser(user), {
     onSuccess: async (data) => {
       const { data: insertData, error: insertError } = await supabase
         .from("users")
         .insert({
-          name: user.name,
-          username: user.username,
+          name: data.name,
+          username: data.username,
           id: data.user.id,
         });
 

@@ -38,7 +38,7 @@ export default function Vehicles() {
       <div className={style.container}>
         {vehicles.map((vehicle) => (
           <Card
-            key={vehicle.name}
+            key={vehicle.name || vehicle.id}
             title={vehicle.name}
             details={{
               Model: vehicle.model,

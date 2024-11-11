@@ -38,9 +38,9 @@ export default function Species() {
   return (
     <>
       <div className={style.container}>
-        {species.map((speciesItem, index) => (
+        {species.map((speciesItem) => (
           <Card
-            key={speciesItem.name + index}
+            key={speciesItem.name || speciesItem.id}
             title={speciesItem.name}
             details={{
               Classification: speciesItem.classification,

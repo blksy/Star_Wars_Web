@@ -40,9 +40,9 @@ const Characters: React.FC = () => {
     loadCharacters();
   }, []);
 
-  const handleCharacterClick = (characterName: string) => {
-    if (characterName) {
-      navigate(ROUTES.characterDetails(characterName));
+  const handleCharacterClick = (characterId: string | undefined) => {
+    if (characterId) {
+      navigate(ROUTES.characterDetails(characterId));
     } else {
       console.error("Character ID is undefined, cannot navigate to details.");
     }
@@ -67,7 +67,7 @@ const Characters: React.FC = () => {
               "Birth Year": character.birth_year,
               Gender: character.gender,
             }}
-            onClick={() => handleCharacterClick(character.name)}
+            onClick={() => handleCharacterClick(character.id)}
           />
         ))}
       </div>
