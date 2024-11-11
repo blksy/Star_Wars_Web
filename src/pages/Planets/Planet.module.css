@@ -3,7 +3,6 @@
   height: 70vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  padding-left: 30px;
   margin-top: 80px;
   gap: 20px;
 }

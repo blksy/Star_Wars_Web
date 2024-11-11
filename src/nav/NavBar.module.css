@@ -1,14 +1,12 @@
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 10%;
+  justify-content: space-around;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
+  height: 100px;
   background-color: black;
-  z-index: 1000;
 }
 nav ul li {
   list-style-type: none;

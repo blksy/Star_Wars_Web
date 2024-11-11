@@ -7,8 +7,7 @@
   width: 100vw;
   height: 70vh;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding-left: 30px;
+  grid-template-columns: repeat(3, 2fr);
   margin-top: 80px;
   gap: 20px;
 }
