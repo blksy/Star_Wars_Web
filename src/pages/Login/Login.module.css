@@ -6,7 +6,13 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 400px;
   cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  color: white;
+  background-color: gray;
+  padding-bottom: 20px;
 }
 .label {
   border: 2px solid white;

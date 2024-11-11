@@ -3,17 +3,17 @@ const ROUTES = {
   login: "/login",
   register: "/register",
   characters: "/characters",
-  characterDetails: (id: number | string) => `/characters/${id}`,
+  characterDetails: (name: string) => `/characters/${name}`,
   planets: "/planets",
-  planetDetails: (id: number | string) => `/planets/${id}`,
+  planetDetails: (id: string) => `/planets/${id}`,
   movies: "/movies",
-  movieDetails: (id: number | string) => `/movies/${id}`,
+  movieDetails: (id: string) => `/movies/${id}`,
   species: "/species",
-  speciesDetails: (id: number | string) => `/species/${id}`,
+  speciesDetails: (id: string) => `/species/${id}`,
   starships: "/starships",
-  starshipDetails: (id: number | string) => `/starships/${id}`,
+  starshipDetails: (id: string) => `/starships/${id}`,
   vehicles: "/vehicles",
-  vehicleDetails: (id: number | string) => `/vehicles/${id}`,
+  vehicleDetails: (id: string) => `/vehicles/${id}`,
 };
 
 export default ROUTES;
