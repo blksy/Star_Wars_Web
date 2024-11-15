@@ -2,9 +2,9 @@ import axios from "axios";
 import { Vehicle } from "../interfaces/interfaces";
 import { API_BASE_URL } from "./baseURL";
 
-export const fetchVehicles = async (): Promise<Vehicle[]> => {
+export const fetchVehicles = async (page: number): Promise<Vehicle[]> => {
   const { data } = await axios.get<{ results: Vehicle[] }>(
-    `${API_BASE_URL}vehicles`
+    `${API_BASE_URL}vehicles/?pages=${page}&limit=10`
   );
   return data.results;
 };
@@ -22,8 +22,8 @@ export const fetchVehicleDetails = async (id: string) => {
     cargo_capacity: data.cargo_capacity,
     consumables: data.consumables,
     vehicle_class: data.vehicle_class,
-    pilots: data.pilots.map((pilot: string) => pilot.pilot.name),
-    films: data.films.map((film: string) => film.film.name),
+    pilots: data.pilots,
+    films: data.films,
     url: data.url,
   };
 };

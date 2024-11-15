@@ -2,9 +2,9 @@ import axios from "axios";
 import { API_BASE_URL } from "./baseURL";
 import { Species } from "../interfaces/interfaces";
 
-export const fetchSpecies = async (): Promise<Species[]> => {
+export const fetchSpecies = async (page: number): Promise<Species[]> => {
   const { data } = await axios.get<{ results: Species[] }>(
-    `${API_BASE_URL}species`
+    `${API_BASE_URL}species/?page=${page}&limit=10`
   );
   return data.results;
 };
@@ -21,8 +21,8 @@ export const fetchSpeciesDetails = async (id: string) => {
     average_lifespan: data.average_lifespan,
     homeworld: data.homeworld,
     language: data.language,
-    people: data.people.map((person: string) => person.person.name),
-    films: data.films.map((film: string) => film.film.name),
+    people: data.people,
+    films: data.films,
     url: data.url,
   };
 };

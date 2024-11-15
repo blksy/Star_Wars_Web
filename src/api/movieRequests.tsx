@@ -14,10 +14,10 @@ export const fetchMovieDetails = async (id: string) => {
     director: data.director,
     producer: data.producer,
     release_date: data.release_date,
-    species: data.species.map((species: string) => species.species.name),
-    starships: data.starships.map((starship: string) => starship.starship.name),
-    vehicles: data.vehicles.map((vehicle: string) => vehicle.vehicle.name),
-    characters: data.characters.map((character) => character.characters.name),
-    planets: data.planets.map((planet: string) => planet.planet.name),
+    species: data.species,
+    starships: data.starships,
+    vehicles: data.vehicles,
+    characters: data.characters,
+    planets: data.planets,
   };
 };

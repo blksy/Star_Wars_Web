@@ -2,9 +2,9 @@ import axios from "axios";
 import { Planet } from "../interfaces/interfaces";
 import { API_BASE_URL } from "./baseURL";
 
-export const fetchPlanets = async (): Promise<Planet[]> => {
+export const fetchPlanets = async (page: number): Promise<Planet[]> => {
   const { data } = await axios.get<{ results: Planet[] }>(
-    `${API_BASE_URL}planets`
+    `${API_BASE_URL}planets/?page=${page}&limit=10`
   );
   return data.results;
 };
@@ -20,8 +20,8 @@ export const fetchPlanetDetails = async (id: string) => {
     terrain: data.terrain,
     surface_water: data.surface_water,
     population: data.population,
-    residents: data.residents.map((resident: string) => resident.resident.name),
-    films: data.films.map((film: string) => film.film.name),
+    residents: data.residents,
+    films: data.films,
     url: data.url,
   };
 };
