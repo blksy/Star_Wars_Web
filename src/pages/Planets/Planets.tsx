@@ -4,6 +4,7 @@ import style from "./Planet.module.css";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
 
 interface Planet {
   id: string;
@@ -15,7 +16,7 @@ interface Planet {
   orbital_period: string;
 }
 export default function Planets() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [planets, setPlanets] = useState<Planet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
@@ -46,6 +47,14 @@ export default function Planets() {
 
   if (loading) return <p className={style.load}>Loading...</p>;
 
+  function handleCardClick(id: string): void {
+    if (id) {
+      navigate(ROUTES.planetDetails(id));
+    } else {
+      console.error("Planet ID is undefined, cannot navigate to details.");
+    }
+  }
+
   return (
     <>
       <div className={style.container}>
@@ -60,6 +69,7 @@ export default function Planets() {
               Population: planet.population,
               "Orbital Period": planet.orbital_period,
             }}
+            onClick={() => handleCardClick(planet.id)}
           />
         ))}
       </div>

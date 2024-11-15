@@ -64,22 +64,34 @@ const Characters: React.FC = () => {
     <>
       <h2 className={style.header}>Character List</h2>
       <div className={style.container}>
-        {characters.map((character) => (
-          <Card
-            key={character.id || character.name}
-            title={character.name}
-            details={{
-              Height: character.height,
-              Mass: character.mass,
-              "Hair Color": character.hair_color,
-              "Skin Color": character.skin_color,
-              "Eye Color": character.eye_color,
-              "Birth Year": character.birth_year,
-              Gender: character.gender,
-            }}
-            onClick={() => handleCharacterClick(character.id)}
-          />
-        ))}
+        {characters.map(
+          ({
+            id,
+            name,
+            height,
+            mass,
+            hair_color,
+            skin_color,
+            eye_color,
+            birth_year,
+            gender,
+          }) => (
+            <Card
+              key={id || name}
+              title={name}
+              details={{
+                Height: height,
+                Mass: mass,
+                "Hair Color": hair_color,
+                "Skin Color": skin_color,
+                "Eye Color": eye_color,
+                "Birth Year": birth_year,
+                Gender: gender,
+              }}
+              onClick={() => handleCharacterClick(id)}
+            />
+          )
+        )}
       </div>
       <div className={style.btnWrapper}>
         <Button onClick={handlePreviousPage} disabled={page <= 1}>
