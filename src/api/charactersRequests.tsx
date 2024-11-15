@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Character } from "../interfaces/interfaces";
-
-const API_BASE_URL = "https://swapi.dev/api/";
+import { API_BASE_URL } from "./baseURL";
 
 export const fetchCharacters = async (page: number): Promise<Character[]> => {
   const { data } = await axios.get<{ results: Character[] }>(
