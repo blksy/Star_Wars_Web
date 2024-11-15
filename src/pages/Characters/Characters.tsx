@@ -23,11 +23,13 @@ const Characters: React.FC = () => {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
 
-  const loadCharacters = async () => {
+  const loadCharacters = async (pageNumber: number) => {
     setLoading(true);
     try {
-      const data = await fetchCharacters();
+      const data = await fetchCharacters(pageNumber);
+      console.log("Fetched Characters: ", data);
       setCharacters(data);
     } catch (error) {
       console.error("Error fetching characters:", error);
@@ -37,8 +39,8 @@ const Characters: React.FC = () => {
   };
 
   useEffect(() => {
-    loadCharacters();
-  }, []);
+    loadCharacters(page);
+  }, [page]);
 
   const handleCharacterClick = (characterId: string | undefined) => {
     if (characterId) {
@@ -46,6 +48,14 @@ const Characters: React.FC = () => {
     } else {
       console.error("Character ID is undefined, cannot navigate to details.");
     }
+  };
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
   };
 
   if (loading) return <p className={style.load}>Loading...</p>;
@@ -72,9 +82,11 @@ const Characters: React.FC = () => {
         ))}
       </div>
       <div className={style.btnWrapper}>
-        <Button>Previous</Button>
-        <p className={style.page}></p>
-        <Button>Next</Button>
+        <Button onClick={handlePreviousPage} disabled={page <= 1}>
+          Previous
+        </Button>
+        <p className={style.page}>Page {page}</p>
+        <Button onClick={handleNextPage}>Next</Button>
       </div>
     </>
   );

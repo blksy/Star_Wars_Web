@@ -26,7 +26,7 @@ export default function CharacterDetails() {
     return <div className={style.load}>Failed to load Character details.</div>;
   }
   return characterDetails ? (
-    <div className={style.container}>
+    <div className={style.detailsContainer}>
       <h2 className={style.name}>{characterDetails.name}</h2>
       <div className={style.details}>
         <p>

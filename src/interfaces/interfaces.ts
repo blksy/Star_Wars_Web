@@ -15,10 +15,10 @@ export interface Character {
   birth_year: string;
   gender: string;
   homeworld: string;
-  films: string[];
-  species: string[];
-  vehicles: string[];
-  starships: string[];
+  films: Film[];
+  species: Species[];
+  vehicles: Vehicle[];
+  starships: Starship[];
   url: string;
 }
 
@@ -29,11 +29,11 @@ export interface Film {
   director: string;
   producer: string;
   release_date: string;
-  species: string[];
-  starships: string[];
-  vehicles: string[];
-  characters: string[];
-  planets: string[];
+  species: Species[];
+  starships: Starship[];
+  vehicles: Vehicle[];
+  characters: Character[];
+  planets: Planet[];
   url: string;
   created: string;
   edited: string;
@@ -49,8 +49,8 @@ export interface Planet {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
+  residents: Character[];
+  films: Film[];
   url: string;
 }
 
@@ -63,10 +63,10 @@ export interface Species {
   hair_colors: string;
   eye_colors: string;
   average_lifespan: string;
-  homeworld: string;
+  homeworld: Planet;
   language: string;
-  people: string[];
-  films: string[];
+  people: Character[];
+  films: Film[];
   url: string;
 }
 
@@ -82,8 +82,8 @@ export interface Vehicle {
   cargo_capacity: string;
   consumables: string;
   vehicle_class: string;
-  pilots: string[];
-  films: string[];
+  pilots: Character[];
+  films: Film[];
   url: string;
 }
 
@@ -101,7 +101,7 @@ export interface Starship {
   hyperdrive_rating: string;
   MGLT: string;
   starship_class: string;
-  pilots: string[];
-  films: string[];
+  pilots: Character[]; // Updated: Instead of string[] (pilot URLs), use Character[]
+  films: Film[]; // Updated: Instead of string[] (film URLs), use Film[]
   url: string;
 }
