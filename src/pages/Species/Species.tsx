@@ -18,20 +18,31 @@ interface Species {
 export default function Species() {
   const [species, setSpecies] = useState<Species[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+
+  const loadSpecies = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const data = await fetchSpecies(pageNumber);
+      setSpecies(data);
+    } catch (error) {
+      console.error("Error fetching species:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getSpecies = async () => {
-      try {
-        const data = await fetchSpecies();
-        setSpecies(data);
-      } catch (error) {
-        console.error("Error fetching species:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getSpecies();
-  }, []);
+    loadSpecies(page);
+  }, [page]);
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+  };
 
   if (loading) return <p className={style.load}>Loading...</p>;
 
@@ -54,9 +65,11 @@ export default function Species() {
         ))}
       </div>
       <div className={style.btnWrapper}>
-        <Button>Previous</Button>
-        <p className={style.page}></p>
-        <Button>Next</Button>
+        <Button onClick={handlePreviousPage} disabled={page <= 1}>
+          Previous
+        </Button>
+        <p className={style.page}>Page {page}</p>
+        <Button onClick={handleNextPage}>Next</Button>
       </div>
     </>
   );

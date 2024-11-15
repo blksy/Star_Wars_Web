@@ -4,7 +4,7 @@ import { API_BASE_URL } from "./baseURL";
 
 export const fetchVehicles = async (page: number): Promise<Vehicle[]> => {
   const { data } = await axios.get<{ results: Vehicle[] }>(
-    `${API_BASE_URL}vehicles/?pages=${page}&limit=10`
+    `${API_BASE_URL}vehicles/?page=${page}&limit=10`
   );
   return data.results;
 };

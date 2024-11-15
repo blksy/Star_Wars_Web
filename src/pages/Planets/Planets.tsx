@@ -3,6 +3,7 @@ import { fetchPlanets } from "../../api/planetsRequests";
 import style from "./Planet.module.css";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 interface Planet {
   id: string;
@@ -14,22 +15,34 @@ interface Planet {
   orbital_period: string;
 }
 export default function Planets() {
+  // const navigate = useNavigate();
   const [planets, setPlanets] = useState<Planet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+
+  const loadPlanets = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const data = await fetchPlanets(pageNumber);
+      setPlanets(data);
+    } catch (error) {
+      console.error("Error fetching planets:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getPlanets = async () => {
-      try {
-        const data = await fetchPlanets();
-        setPlanets(data);
-      } catch (error) {
-        console.error("Error fetching planets:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getPlanets();
-  });
+    loadPlanets(page);
+  }, [page]);
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+  };
 
   if (loading) return <p className={style.load}>Loading...</p>;
 
@@ -51,9 +64,11 @@ export default function Planets() {
         ))}
       </div>
       <div className={style.btnWrapper}>
-        <Button>Previous</Button>
-        <p className={style.page}></p>
-        <Button>Next</Button>
+        <Button onClick={handlePreviousPage} disabled={page <= 1}>
+          Previous
+        </Button>
+        <p className={style.page}>Page {page}</p>
+        <Button onClick={handleNextPage}>Next</Button>
       </div>
     </>
   );

@@ -17,22 +17,34 @@ interface Vehicle {
 export default function Vehicles() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+
+  const loadVehicles = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const data = await fetchVehicles(pageNumber);
+      setVehicles(data);
+    } catch (error) {
+      console.error("Error fetching vehicles:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getVehicles = async () => {
-      try {
-        const data = await fetchVehicles();
-        setVehicles(data);
-      } catch (error) {
-        console.error("Error fetching vehicles:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getVehicles();
-  });
+    loadVehicles(page);
+  }, [page]);
+
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+  };
 
   if (loading) return <p className={style.load}>Loading...</p>;
+
   return (
     <>
       <div className={style.container}>
@@ -52,9 +64,11 @@ export default function Vehicles() {
         ))}
       </div>
       <div className={style.btnWrapper}>
-        <Button>Previous</Button>
-        <p className={style.page}></p>
-        <Button>Next</Button>
+        <Button onClick={handlePreviousPage} disabled={page <= 1}>
+          Previous
+        </Button>
+        <p className={style.page}>Page {page}</p>
+        <Button onClick={handleNextPage}>Next</Button>
       </div>
     </>
   );
