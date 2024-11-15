@@ -101,7 +101,7 @@ function MainContent() {
               }
             />
             <Route
-              path={ROUTES.characterDetails(":id")}
+              path={ROUTES.characterDetails(":characterId")}
               element={
                 <motion.div
                   initial={{ opacity: 0, x: -100 }}

@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import { FormInput } from "../../components/FormInput/FormInput";
 import { registerSchema } from "../../validators";
 import style from "./Register.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes";
 import Button from "../../components/Button/Button";
+import { useAuth } from "../../hooks/useAuth";
 
 type FormValues = {
   name: string;
@@ -14,6 +15,13 @@ type FormValues = {
 };
 
 export default function Register() {
+  const navigate = useNavigate();
+  const { session, signUp } = useAuth();
+
+  if (session) {
+    navigate(ROUTES.home);
+  }
+
   const formik = useFormik<FormValues>({
     initialValues: {
       name: "",
@@ -22,8 +30,24 @@ export default function Register() {
       password: "",
     },
     validationSchema: registerSchema,
-    onSubmit() {},
+    onSubmit: async (values) => {
+      try {
+        await signUp(
+          values.email,
+          values.password,
+          values.name,
+          values.username
+        );
+        alert(
+          "Registration successful! Please check your email for confirmation."
+        );
+        navigate(ROUTES.login);
+      } catch (err) {
+        alert("Error registering: " + (err as Error).message);
+      }
+    },
   });
+
   return (
     <div className={style.container}>
       <form onSubmit={formik.handleSubmit}>
@@ -50,7 +74,6 @@ export default function Register() {
           label="Email"
         />
         <span>Password</span>
-
         <FormInput
           className={style.label}
           formik={formik}
@@ -66,7 +89,9 @@ export default function Register() {
           Already have an account? Login instead!
         </h2>
         <Link to={ROUTES.login}>
-          <Button className={style.btn}>Login</Button>
+          <Button className={style.btn} type="button">
+            Login
+          </Button>
         </Link>
       </div>
     </div>
