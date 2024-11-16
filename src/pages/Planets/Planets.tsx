@@ -58,20 +58,30 @@ export default function Planets() {
   return (
     <>
       <div className={style.container}>
-        {planets.map((planet) => (
-          <Card
-            key={planet.name || planet.id}
-            title={planet.name}
-            details={{
-              Diameter: planet.diameter,
-              Climate: planet.climate,
-              Terrain: planet.terrain,
-              Population: planet.population,
-              "Orbital Period": planet.orbital_period,
-            }}
-            onClick={() => handleCardClick(planet.id)}
-          />
-        ))}
+        {planets.map(
+          ({
+            id,
+            name,
+            diameter,
+            climate,
+            terrain,
+            population,
+            orbital_period,
+          }) => (
+            <Card
+              key={name || id}
+              title={name}
+              details={{
+                Diameter: diameter,
+                Climate: climate,
+                Terrain: terrain,
+                Population: population,
+                "Orbital Period": orbital_period,
+              }}
+              onClick={() => handleCardClick(id)}
+            />
+          )
+        )}
       </div>
       <div className={style.btnWrapper}>
         <Button onClick={handlePreviousPage} disabled={page <= 1}>

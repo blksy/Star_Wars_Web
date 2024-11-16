@@ -25,45 +25,62 @@ export default function CharacterDetails() {
   if (error) {
     return <div className={style.load}>Failed to load Character details.</div>;
   }
+
+  const {
+    name,
+    height,
+    mass,
+    hair_color,
+    skin_color,
+    eye_color,
+    birth_year,
+    gender,
+    homeworld,
+    films = [],
+    species = [],
+    vehicles = [],
+    starships = [],
+  } = characterDetails || {};
+
   return characterDetails ? (
     <div className={style.detailsContainer}>
-      <h2 className={style.name}>{characterDetails.name}</h2>
+      <h2 className={style.name}>{name}</h2>
       <div className={style.details}>
         <p>
-          <strong>Height:</strong> {characterDetails.height} cm
+          <strong>Height:</strong> {height} cm
         </p>
         <p>
-          <strong>Mass:</strong> {characterDetails.mass} kg
+          <strong>Mass:</strong> {mass} kg
         </p>
         <p>
-          <strong>Hair Color:</strong> {characterDetails.hair_color}
+          <strong>Hair Color:</strong> {hair_color}
         </p>
         <p>
-          <strong>Skin Color:</strong> {characterDetails.skin_color}
+          <strong>Skin Color:</strong> {skin_color}
         </p>
         <p>
-          <strong>Eye Color:</strong> {characterDetails.eye_color}
+          <strong>Eye Color:</strong> {eye_color}
         </p>
         <p>
-          <strong>Birth Year:</strong> {characterDetails.birth_year}
+          <strong>Birth Year:</strong> {birth_year}
         </p>
         <p>
-          <strong>Gender:</strong> {characterDetails.gender}
+          <strong>Gender:</strong> {gender}
         </p>
         <p>
-          <strong>Homeworld:</strong> {characterDetails.homeworld}
+          <strong>Homeworld:</strong> {homeworld}
         </p>
         <p>
-          <strong>Films:</strong> {characterDetails.films.join(", ")}
+          <strong>Films:</strong> {films.join(", ")}
         </p>
         <p>
-          <strong>Species:</strong> {characterDetails.species.join(", ")}
+          <strong>Species:</strong> {species.join(", ")}
         </p>
         <p>
-          <strong>Vehicles:</strong> {characterDetails.vehicles.join(", ")}
+          <strong>Vehicles:</strong> {vehicles.join(", ")}
         </p>
         <p>
-          <strong>Starships:</strong> {characterDetails.starships.join(", ")}
+          <strong>Starships:</strong> {starships.join(", ")}
         </p>
       </div>
       <Link to={ROUTES.characters}>

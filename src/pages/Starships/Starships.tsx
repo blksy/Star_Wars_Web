@@ -48,20 +48,31 @@ export default function Starships() {
   return (
     <>
       <div className={style.container}>
-        {starships.map((starship) => (
-          <Card
-            key={starship.name || starship.id}
-            title={starship.name}
-            details={{
-              Model: starship.model,
-              Manufacturer: starship.manufacturer,
-              Length: starship.length,
-              Crew: starship.crew,
-              Passengers: starship.passengers,
-              "Hyperdrive Rating": starship.hyperdrive_rating,
-            }}
-          />
-        ))}
+        {starships.map(
+          ({
+            id,
+            name,
+            model,
+            manufacturer,
+            length,
+            crew,
+            passengers,
+            hyperdrive_rating,
+          }) => (
+            <Card
+              key={name || id}
+              title={name}
+              details={{
+                Model: model,
+                Manufacturer: manufacturer,
+                Length: length,
+                Crew: crew,
+                Passengers: passengers,
+                "Hyperdrive Rating": hyperdrive_rating,
+              }}
+            />
+          )
+        )}
       </div>
       <div className={style.btnWrapper}>
         <Button onClick={handlePreviousPage} disabled={page <= 1}>

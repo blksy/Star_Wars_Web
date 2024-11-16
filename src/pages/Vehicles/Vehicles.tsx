@@ -48,20 +48,31 @@ export default function Vehicles() {
   return (
     <>
       <div className={style.container}>
-        {vehicles.map((vehicle) => (
-          <Card
-            key={vehicle.name || vehicle.id}
-            title={vehicle.name}
-            details={{
-              Model: vehicle.model,
-              Manufacturer: vehicle.manufacturer,
-              Length: vehicle.length,
-              Crew: vehicle.crew,
-              Passengers: vehicle.passengers,
-              "Vehicle Class": vehicle.vehicle_class,
-            }}
-          />
-        ))}
+        {vehicles.map(
+          ({
+            id,
+            name,
+            model,
+            manufacturer,
+            length,
+            crew,
+            passengers,
+            vehicle_class,
+          }) => (
+            <Card
+              key={name || id}
+              title={name}
+              details={{
+                Model: model,
+                Manufacturer: manufacturer,
+                Length: length,
+                Crew: crew,
+                Passengers: passengers,
+                "Vehicle Class": vehicle_class,
+              }}
+            />
+          )
+        )}
       </div>
       <div className={style.btnWrapper}>
         <Button onClick={handlePreviousPage} disabled={page <= 1}>

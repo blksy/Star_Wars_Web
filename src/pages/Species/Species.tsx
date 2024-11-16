@@ -49,20 +49,31 @@ export default function Species() {
   return (
     <>
       <div className={style.container}>
-        {species.map((speciesItem) => (
-          <Card
-            key={speciesItem.name || speciesItem.id}
-            title={speciesItem.name}
-            details={{
-              Classification: speciesItem.classification,
-              Designation: speciesItem.designation,
-              Language: speciesItem.language,
-              "Average Height": speciesItem.average_height,
-              "Skin Colors": speciesItem.skin_colors,
-              "Average Lifespan": speciesItem.average_lifespan,
-            }}
-          />
-        ))}
+        {species.map(
+          ({
+            id,
+            name,
+            classification,
+            designation,
+            language,
+            average_height,
+            skin_colors,
+            average_lifespan,
+          }) => (
+            <Card
+              key={name || id}
+              title={name}
+              details={{
+                Classification: classification,
+                Designation: designation,
+                Language: language,
+                "Average Height": average_height,
+                "Skin Colors": skin_colors,
+                "Average Lifespan": average_lifespan,
+              }}
+            />
+          )
+        )}
       </div>
       <div className={style.btnWrapper}>
         <Button onClick={handlePreviousPage} disabled={page <= 1}>
