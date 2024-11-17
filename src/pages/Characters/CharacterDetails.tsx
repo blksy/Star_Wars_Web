@@ -14,7 +14,7 @@ export default function CharacterDetails() {
     isLoading,
   } = useQuery({
     queryKey: ["character", characterId],
-    queryFn: () => fetchCharacterDetails(characterId),
+    queryFn: () => fetchCharacterDetails(characterId as string),
     enabled: !!characterId,
   });
 
