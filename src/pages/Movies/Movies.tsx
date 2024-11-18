@@ -4,17 +4,10 @@ import style from "./Movies.module.css";
 import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 import ROUTES from "../../routes";
-
-interface Movie {
-  id: string;
-  title: string;
-  director: string;
-  producer: string;
-  release_date: string;
-}
+import { Film } from "../../interfaces/interfaces";
 
 export default function Movies() {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Film[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -36,17 +29,17 @@ export default function Movies() {
   return (
     <>
       <div className={style.container}>
-        {movies.map((movie) => (
+        {movies.map(({ title, director, producer, release_date, url }) => (
           <Link
-            key={movie.id || movie.title}
-            to={ROUTES.movieDetails(movie.id)}
+            key={title}
+            to={ROUTES.movieDetails(url.split("/").at(-2) || "")}
           >
             <Card
-              title={movie.title}
+              title={title}
               details={{
-                Director: movie.director,
-                Producer: movie.producer,
-                "Release Date": movie.release_date,
+                Director: director,
+                Producer: producer,
+                "Release Date": release_date,
               }}
             />
           </Link>

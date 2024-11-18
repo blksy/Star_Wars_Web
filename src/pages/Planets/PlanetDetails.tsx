@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import style from "./PlanetDetails.module.css";
+import style from "./Planet.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPlanetDetails } from "../../api/planetsRequests";
 
@@ -12,7 +12,7 @@ export default function PlanetDetails() {
     isLoading,
   } = useQuery({
     queryKey: ["planet", id],
-    queryFn: () => fetchPlanetDetails(id),
+    queryFn: () => fetchPlanetDetails(id as string),
     enabled: !!id,
   });
 

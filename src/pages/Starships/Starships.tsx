@@ -3,17 +3,9 @@ import { fetchStarships } from "../../api/starshipsRequests";
 import style from "./Starships.module.css";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
-
-interface Starship {
-  id: string;
-  name: string;
-  model: string;
-  manufacturer: string;
-  length: string;
-  crew: string;
-  passengers: string;
-  hyperdrive_rating: string;
-}
+import { Starship } from "../../interfaces/interfaces";
+import { Link } from "react-router-dom";
+import ROUTES from "../../routes";
 
 export default function Starships() {
   const [starships, setStarships] = useState<Starship[]>([]);
@@ -50,7 +42,6 @@ export default function Starships() {
       <div className={style.container}>
         {starships.map(
           ({
-            id,
             name,
             model,
             manufacturer,
@@ -58,20 +49,27 @@ export default function Starships() {
             crew,
             passengers,
             hyperdrive_rating,
-          }) => (
-            <Card
-              key={name || id}
-              title={name}
-              details={{
-                Model: model,
-                Manufacturer: manufacturer,
-                Length: length,
-                Crew: crew,
-                Passengers: passengers,
-                "Hyperdrive Rating": hyperdrive_rating,
-              }}
-            />
-          )
+            url,
+          }) => {
+            return (
+              <Link
+                key={name}
+                to={ROUTES.starshipDetails(url.split("/").at(-2) || "")}
+              >
+                <Card
+                  title={name}
+                  details={{
+                    Model: model,
+                    Manufacturer: manufacturer,
+                    Length: length,
+                    Crew: crew,
+                    Passengers: passengers,
+                    "Hyperdrive Rating": hyperdrive_rating,
+                  }}
+                />
+              </Link>
+            );
+          }
         )}
       </div>
       <div className={style.btnWrapper}>

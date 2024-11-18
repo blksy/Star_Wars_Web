@@ -3,17 +3,10 @@ import style from "./Vehicles.module.css";
 import { fetchVehicles } from "../../api/vehiclesRequests";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
+import { Vehicle } from "../../interfaces/interfaces";
+import { Link } from "react-router-dom";
+import ROUTES from "../../routes";
 
-interface Vehicle {
-  id: string;
-  name: string;
-  model: string;
-  manufacturer: string;
-  length: string;
-  crew: string;
-  passengers: string;
-  vehicle_class: string;
-}
 export default function Vehicles() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,7 +43,6 @@ export default function Vehicles() {
       <div className={style.container}>
         {vehicles.map(
           ({
-            id,
             name,
             model,
             manufacturer,
@@ -58,20 +50,27 @@ export default function Vehicles() {
             crew,
             passengers,
             vehicle_class,
-          }) => (
-            <Card
-              key={name || id}
-              title={name}
-              details={{
-                Model: model,
-                Manufacturer: manufacturer,
-                Length: length,
-                Crew: crew,
-                Passengers: passengers,
-                "Vehicle Class": vehicle_class,
-              }}
-            />
-          )
+            url,
+          }) => {
+            return (
+              <Link
+                key={name}
+                to={ROUTES.vehicleDetails(url.split("/").at(-2) || "")}
+              >
+                <Card
+                  title={name}
+                  details={{
+                    Model: model,
+                    Manufacturer: manufacturer,
+                    Length: length,
+                    Crew: crew,
+                    Passengers: passengers,
+                    "Vehicle Class": vehicle_class,
+                  }}
+                />
+              </Link>
+            );
+          }
         )}
       </div>
       <div className={style.btnWrapper}>

@@ -54,7 +54,7 @@ export interface Planet {
   url: string;
 }
 
-export interface Species {
+export interface SpeciesI {
   name: string;
   classification: string;
   designation: string;
@@ -101,7 +101,7 @@ export interface Starship {
   hyperdrive_rating: string;
   MGLT: string;
   starship_class: string;
-  pilots: Character[]; // Updated: Instead of string[] (pilot URLs), use Character[]
-  films: Film[]; // Updated: Instead of string[] (film URLs), use Film[]
+  pilots: Character[];
+  films: Film[];
   url: string;
 }
