@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Planet } from "../interfaces/interfaces";
-import { API_BASE_URL } from "./baseURL";
+import { API_BASE_URL, fetchRelatedData } from "./baseURL";
 
 export const fetchPlanets = async (page: number): Promise<Planet[]> => {
   const { data } = await axios.get<{ results: Planet[] }>(
@@ -8,8 +8,13 @@ export const fetchPlanets = async (page: number): Promise<Planet[]> => {
   );
   return data.results;
 };
+
 export const fetchPlanetDetails = async (id: string) => {
   const { data } = await axios.get<Planet>(`${API_BASE_URL}planets/${id}`);
+
+  const residents = await fetchRelatedData(data.residents);
+  const films = await fetchRelatedData(data.films);
+
   return {
     name: data.name,
     rotation_period: data.rotation_period,
@@ -20,8 +25,7 @@ export const fetchPlanetDetails = async (id: string) => {
     terrain: data.terrain,
     surface_water: data.surface_water,
     population: data.population,
-    residents: data.residents,
-    films: data.films,
-    url: data.url,
+    residents,
+    films,
   };
 };

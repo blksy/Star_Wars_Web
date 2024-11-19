@@ -5,15 +5,15 @@ const ROUTES = {
   characters: "/characters",
   characterDetails: (characterId: string) => `/characters/${characterId}`,
   planets: "/planets",
-  planetDetails: (id: string) => `/planets/${id}`,
+  planetDetails: (planetId: string) => `/planets/${planetId}`,
   movies: "/movies",
-  movieDetails: (id: string) => `/movies/${id}`,
+  movieDetails: (movieId: string) => `/movies/${movieId}`,
   species: "/species",
-  speciesDetails: (id: string) => `/species/${id}`,
+  speciesDetails: (speciesId: string) => `/species/${speciesId}`,
   starships: "/starships",
-  starshipDetails: (id: string) => `/starships/${id}`,
+  starshipDetails: (starshipId: string) => `/starships/${starshipId}`,
   vehicles: "/vehicles",
-  vehicleDetails: (id: string) => `/vehicles/${id}`,
+  vehicleDetails: (vehicleId: string) => `/vehicles/${vehicleId}`,
 };
 
 export default ROUTES;

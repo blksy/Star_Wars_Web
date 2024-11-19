@@ -27,15 +27,15 @@ export default function CharacterDetails() {
   }
 
   const {
-    name,
-    height,
-    mass,
-    hair_color,
-    skin_color,
-    eye_color,
-    birth_year,
-    gender,
-    homeworld,
+    name = "N/A",
+    height = "N/A",
+    mass = "N/A",
+    hair_color = "N/A",
+    skin_color = "N/A",
+    eye_color = "N/A",
+    birth_year = "N/A",
+    gender = "N/A",
+    homeworld = "N/A",
     films = [],
     species = [],
     vehicles = [],
@@ -45,44 +45,44 @@ export default function CharacterDetails() {
   return characterDetails ? (
     <div className={style.detailsContainer}>
       <h2 className={style.name}>{name}</h2>
-      <div className={style.details}>
-        <p>
+      <ul className={style.detailsList}>
+        <li>
           <strong>Height:</strong> {height} cm
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Mass:</strong> {mass} kg
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Hair Color:</strong> {hair_color}
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Skin Color:</strong> {skin_color}
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Eye Color:</strong> {eye_color}
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Birth Year:</strong> {birth_year}
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Gender:</strong> {gender}
-        </p>
-        <p>
+        </li>
+        <li>
           <strong>Homeworld:</strong> {homeworld}
-        </p>
-        <p>
-          <strong>Films:</strong> {films.join(", ")}
-        </p>
-        <p>
-          <strong>Species:</strong> {species.join(", ")}
-        </p>
-        <p>
-          <strong>Vehicles:</strong> {vehicles.join(", ")}
-        </p>
-        <p>
-          <strong>Starships:</strong> {starships.join(", ")}
-        </p>
-      </div>
+        </li>
+        <li>
+          <strong>Films:</strong> {films.join(", ") || "N/A"}
+        </li>
+        <li>
+          <strong>Species:</strong> {species.join(", ") || "N/A"}
+        </li>
+        <li>
+          <strong>Vehicles:</strong> {vehicles.join(", ") || "N/A"}
+        </li>
+        <li>
+          <strong>Starships:</strong> {starships.join(", ") || "N/A"}
+        </li>
+      </ul>
       <Link to={ROUTES.characters}>
         <Button className={style.btn}>Go Back to the Character List</Button>
       </Link>

@@ -1,15 +1,15 @@
 import axios from "axios";
 import { API_BASE_URL } from "./baseURL";
-import { Species } from "../interfaces/interfaces";
+import { SpeciesI } from "../interfaces/interfaces";
 
-export const fetchSpecies = async (page: number): Promise<Species[]> => {
-  const { data } = await axios.get<{ results: Species[] }>(
+export const fetchSpecies = async (page: number): Promise<SpeciesI[]> => {
+  const { data } = await axios.get<{ results: SpeciesI[] }>(
     `${API_BASE_URL}species/?page=${page}&limit=10`
   );
   return data.results;
 };
 export const fetchSpeciesDetails = async (id: string) => {
-  const { data } = await axios.get<Species>(`${API_BASE_URL}species/${id}`);
+  const { data } = await axios.get<SpeciesI>(`${API_BASE_URL}species/${id}`);
   return {
     name: data.name,
     classification: data.classification,

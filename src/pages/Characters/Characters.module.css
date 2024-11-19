@@ -26,11 +26,21 @@
   border: 1px solid white;
   display: flex;
   flex-direction: column;
-  height: 750px;
-  margin-left: 200px;
+  height: 700px;
+  margin-left: 500px;
+  width: 100vh;
   margin-top: 50px;
   align-items: center;
 }
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding-left: 35px;
+}
+
 p {
   color: white;
   font-size: 20px;

@@ -14,9 +14,9 @@ export interface Character {
   eye_color: string;
   birth_year: string;
   gender: string;
-  homeworld: string;
+  homeworld: Planet[];
   films: Film[];
-  species: Species[];
+  species: SpeciesI[];
   vehicles: Vehicle[];
   starships: Starship[];
   url: string;
@@ -29,7 +29,7 @@ export interface Film {
   director: string;
   producer: string;
   release_date: string;
-  species: Species[];
+  species: SpeciesI[];
   starships: Starship[];
   vehicles: Vehicle[];
   characters: Character[];
@@ -63,7 +63,7 @@ export interface SpeciesI {
   hair_colors: string;
   eye_colors: string;
   average_lifespan: string;
-  homeworld: Planet;
+  homeworld: Planet[];
   language: string;
   people: Character[];
   films: Film[];
