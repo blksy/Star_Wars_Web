@@ -58,10 +58,8 @@ export default function SpeciesDetails() {
         <li>Average lifespan: {average_lifespan}</li>
         <li>Homeworld: {homeworld}</li>
         <li>Language: {language}</li>
-        <li>
-          People: {people.map((person) => person.name).join(", ") || "N/A"}
-        </li>
-        <li>Films: {films.map((film) => film.title).join(", ") || "N/A"}</li>
+        <li>People: {people.join(", ") || "N/A"}</li>
+        <li>Films: {films.join(", ") || "N/A"}</li>
       </ul>
       <Link to={ROUTES.species}>
         <Button className={style.btn}>Go Back to the Species List</Button>

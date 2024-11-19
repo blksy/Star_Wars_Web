@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL } from "./baseURL";
+import { API_BASE_URL, fetchRelatedData } from "./baseURL";
 import { SpeciesI } from "../interfaces/interfaces";
 
 export const fetchSpecies = async (page: number): Promise<SpeciesI[]> => {
@@ -10,6 +10,13 @@ export const fetchSpecies = async (page: number): Promise<SpeciesI[]> => {
 };
 export const fetchSpeciesDetails = async (id: string) => {
   const { data } = await axios.get<SpeciesI>(`${API_BASE_URL}species/${id}`);
+
+  const people = await fetchRelatedData(data.people);
+  const films = await fetchRelatedData(data.films);
+  const homeworld = data.homeworld
+    ? await axios.get(data.homeworld).then((res) => res.data.name)
+    : "Unknown";
+
   return {
     name: data.name,
     classification: data.classification,
@@ -19,10 +26,10 @@ export const fetchSpeciesDetails = async (id: string) => {
     hair_colors: data.hair_colors,
     eye_colors: data.eye_colors,
     average_lifespan: data.average_lifespan,
-    homeworld: data.homeworld,
+    homeworld,
     language: data.language,
-    people: data.people,
-    films: data.films,
+    people,
+    films,
     url: data.url,
   };
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Starship } from "../interfaces/interfaces";
-import { API_BASE_URL } from "./baseURL";
+import { API_BASE_URL, fetchRelatedData } from "./baseURL";
 
 export const fetchStarships = async (page: number): Promise<Starship[]> => {
   const { data } = await axios.get<{ results: Starship[] }>(
@@ -10,6 +10,10 @@ export const fetchStarships = async (page: number): Promise<Starship[]> => {
 };
 export const fetchStarshipDetails = async (id: string) => {
   const { data } = await axios.get<Starship>(`${API_BASE_URL}starship/${id}`);
+
+  const pilots = await fetchRelatedData(data.pilots);
+  const films = await fetchRelatedData(data.films);
+
   return {
     name: data.name,
     model: data.model,
@@ -24,8 +28,8 @@ export const fetchStarshipDetails = async (id: string) => {
     hyperdrive_rating: data.hyperdrive_rating,
     MGLT: data.MGLT,
     starship_class: data.starship_class,
-    pilots: data.pilots,
-    films: data.films,
+    pilots,
+    films,
     url: data.url,
   };
 };
