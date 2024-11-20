@@ -9,7 +9,7 @@ export const fetchStarships = async (page: number): Promise<Starship[]> => {
   return data.results;
 };
 export const fetchStarshipDetails = async (id: string) => {
-  const { data } = await axios.get<Starship>(`${API_BASE_URL}starship/${id}`);
+  const { data } = await axios.get<Starship>(`${API_BASE_URL}starships/${id}`);
 
   const pilots = await fetchRelatedData(data.pilots);
   const films = await fetchRelatedData(data.films);
