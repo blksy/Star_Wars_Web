@@ -16,11 +16,7 @@ type FormValues = {
 
 export default function Register() {
   const navigate = useNavigate();
-  const { session, signUp } = useAuth();
-
-  if (session) {
-    navigate(ROUTES.home);
-  }
+  const { signUp } = useAuth();
 
   const formik = useFormik<FormValues>({
     initialValues: {
