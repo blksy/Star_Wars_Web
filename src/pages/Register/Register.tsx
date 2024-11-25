@@ -27,6 +27,7 @@ export default function Register() {
     },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
+      console.log("Email value:", values.email);
       try {
         await signUp(
           values.email,

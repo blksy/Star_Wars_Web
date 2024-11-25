@@ -3,7 +3,10 @@ import * as yup from "yup";
 export const registerSchema = yup.object({
   name: yup.string().required("Please state Your name"),
   username: yup.string().required("Please provide a username"),
-  email: yup.string().required("Please provide an exisitng email"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Please provide an existing email"),
   password: yup.string().required("Please provide a new password"),
 });
 
