@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { FormInput } from "../../components/FormInput/FormInput";
+import * as yup from "yup";
 import { registerSchema } from "../../validators";
 import style from "./Register.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,12 +8,7 @@ import ROUTES from "../../routes";
 import Button from "../../components/Button/Button";
 import { useAuth } from "../../hooks/useAuth";
 
-type FormValues = {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-};
+type FormValues = yup.InferType<typeof registerSchema>;
 
 export default function Register() {
   const navigate = useNavigate();

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../database/supabase";
 
 const handleSupabaseError = (error: any) => {
+  console.error("Supabase Error Details:", error);
   if (error instanceof Error) {
     console.error("Network Error:", error.message);
   } else {
@@ -18,18 +19,26 @@ export const useAuth = () => {
     username: string
   ) => {
     try {
-      const { error, data } = await supabase.auth.signUp({ email, password });
-      if (data && data.user) {
-        await supabase.from("users").insert({
-          id: data.user.id,
-          name,
-          email,
-          password,
-          username,
-        });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        handleSupabaseError(error);
       }
 
-      if (error) handleSupabaseError(error);
+      if (data?.user) {
+        const { error: dbError } = await supabase.from("users").insert({
+          id: data.user.id,
+          name,
+          username,
+        });
+
+        if (dbError) {
+          handleSupabaseError(dbError);
+        }
+      }
     } catch (error) {
       handleSupabaseError(error);
     }
