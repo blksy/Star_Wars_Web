@@ -26,9 +26,9 @@ export default function Register() {
       console.log("Email value:", values.email);
       try {
         await signUp(
-          values.email,
-          values.password,
           values.name,
+          values.email.trim(),
+          values.password,
           values.username
         );
         alert(
