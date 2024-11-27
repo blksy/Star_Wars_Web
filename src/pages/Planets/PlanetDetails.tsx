@@ -38,7 +38,7 @@ export default function PlanetDetails() {
 
   return planetDetails ? (
     <div className={style.detailsContainer}>
-      <h1 className={style.name}>{name}</h1>
+      <h2 className={style.name}>{name}</h2>
       <ul className={style.detailsList}>
         <li>Rotation Period: {rotation_period}</li>
         <li>Orbital Period: {orbital_period}</li>

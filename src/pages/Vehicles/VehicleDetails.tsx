@@ -39,7 +39,7 @@ export default function VehicleDetails() {
   } = vehicleDetails || {};
   return vehicleDetails ? (
     <div className={style.detailsContainer}>
-      <h1 className={style.name}>{name}</h1>
+      <h2 className={style.name}>{name}</h2>
       <ul className={style.detailsList}>
         <li>Model: {model}</li>
         <li>Manufacturer: {manufacturer}</li>

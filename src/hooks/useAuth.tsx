@@ -32,6 +32,8 @@ export const useAuth = () => {
         const { error: dbError } = await supabase.from("users").insert({
           id: data.user.id,
           name,
+          email,
+          password,
           username,
         });
 

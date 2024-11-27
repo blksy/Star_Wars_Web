@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect } from "react";
 
 type FormValues = {
   email: string;
@@ -14,11 +15,13 @@ type FormValues = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const { session, login } = useAuth();
+  const { user, login } = useAuth();
 
-  if (session) {
-    navigate(ROUTES.home);
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(ROUTES.home);
+    }
+  }, [user, navigate]);
 
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -36,7 +39,6 @@ const Login = () => {
       }
     },
   });
-
   return (
     <div className={style.container}>
       <form onSubmit={formik.handleSubmit}>

@@ -2,6 +2,7 @@ const ROUTES = {
   home: "/",
   login: "/login",
   register: "/register",
+  profile: "/profile",
   characters: "/characters",
   characterDetails: (characterId: string) => `/characters/${characterId}`,
   planets: "/planets",

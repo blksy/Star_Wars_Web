@@ -11,3 +11,29 @@
   margin-top: 80px;
   gap: 20px;
 }
+.detailsContainer {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  margin-left: 500px;
+  width: 100vh;
+  margin-top: 50px;
+  align-items: center;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: white;
+  padding-left: 35px;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+  padding-bottom: 15px;
+}

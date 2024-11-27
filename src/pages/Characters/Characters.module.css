@@ -38,6 +38,7 @@ ul {
 li {
   margin-bottom: 10px;
   cursor: pointer;
+  color: white;
   padding-left: 35px;
 }
 
