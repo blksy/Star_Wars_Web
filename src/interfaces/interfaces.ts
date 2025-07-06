@@ -15,11 +15,11 @@ export interface Character {
   eye_color: string;
   birth_year: string;
   gender: string;
-  homeworld: Planet[];
-  films: Film[];
-  species: SpeciesI[];
-  vehicles: Vehicle[];
-  starships: Starship[];
+  homeworld: string;
+  films: string[];
+  species: string[];
+  vehicles: string[];
+  starships: string[];
   url: string;
 }
 
@@ -30,11 +30,11 @@ export interface Film {
   director: string;
   producer: string;
   release_date: string;
-  species: SpeciesI[];
-  starships: Starship[];
-  vehicles: Vehicle[];
-  characters: Character[];
-  planets: Planet[];
+  species: string[];
+  starships: string[];
+  vehicles: string[];
+  characters: string[];
+  planets: string[];
   url: string;
   created: string;
   edited: string;
@@ -50,8 +50,8 @@ export interface Planet {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: Character[];
-  films: Film[];
+  residents: string[];
+  films: string[];
   url: string;
 }
 
@@ -64,10 +64,10 @@ export interface SpeciesI {
   hair_colors: string;
   eye_colors: string;
   average_lifespan: string;
-  homeworld: Planet[];
+  homeworld: string;
   language: string;
-  people: Character[];
-  films: Film[];
+  people: string[];
+  films: string[];
   url: string;
 }
 
@@ -83,8 +83,8 @@ export interface Vehicle {
   cargo_capacity: string;
   consumables: string;
   vehicle_class: string;
-  pilots: Character[];
-  films: Film[];
+  pilots: string[];
+  films: string[];
   url: string;
 }
 
@@ -102,7 +102,7 @@ export interface Starship {
   hyperdrive_rating: string;
   MGLT: string;
   starship_class: string;
-  pilots: Character[];
-  films: Film[];
+  pilots: string[];
+  films: string[];
   url: string;
 }
