@@ -1,14 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../database/supabase";
+import { User } from "../interfaces/interfaces";
 
-const handleSupabaseError = (error: any) => {
-  console.error("Supabase Error Details:", error);
+const handleSupabaseError = (error: unknown) => {
   if (error instanceof Error) {
     console.error("Network Error:", error.message);
+    throw error;
+  } else if (
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error
+  ) {
+    console.error("Supabase Error:", (error as { message: string }).message);
+    throw new Error((error as { message: string }).message);
   } else {
-    console.error("Supabase Error:", error);
+    console.error("Unknown error:", error);
+    throw new Error("Unknown error occurred");
   }
-  throw new Error(error?.message || "Unknown error occurred");
 };
 
 export const useAuth = () => {
@@ -74,12 +82,21 @@ export const useAuth = () => {
   } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      try {
-        const { data: session } = await supabase.auth.getSession();
-        return session?.user ?? null;
-      } catch (error) {
-        handleSupabaseError(error);
-      }
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const userId = session?.user?.id;
+
+      if (!userId) return null;
+
+      const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", userId)
+        .single();
+
+      if (error) throw new Error(error.message);
+      return data as User;
     },
   });
 

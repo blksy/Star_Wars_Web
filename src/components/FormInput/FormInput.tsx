@@ -1,6 +1,7 @@
 import { FormikProps } from "formik";
 import * as yup from "yup";
 import TextField from "@mui/material/TextField";
+import { yupSchema } from "../../interfaces/interfaces";
 
 type FormValues = yup.InferType<typeof yupSchema>;
 
@@ -11,19 +12,17 @@ export const FormInput = ({
   className,
 }: {
   formik: FormikProps<FormValues>;
-  accessor: keyof FormValues;
+  accessor: keyof FormValues & string;
   label: string;
   className?: string;
 }) => {
+  const error = formik.touched[accessor] && formik.errors[accessor];
+
   return (
     <div className={className}>
       <TextField
-        error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
-        helperText={
-          formik.touched[accessor] && formik.errors[accessor]
-            ? formik.errors[accessor]
-            : null
-        }
+        error={Boolean(error)}
+        helperText={error ? String(error) : ""}
         id={accessor}
         label={label}
         name={accessor}
