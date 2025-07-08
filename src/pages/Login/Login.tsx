@@ -44,15 +44,8 @@ const Login = () => {
       <form onSubmit={formik.handleSubmit}>
         <h2 className={style.header}>Provide email and password to login</h2>
         <span>Email</span>
-        <FormInput
-          className={style.label}
-          formik={formik}
-          accessor="email"
-          label="Email"
-        />
-        <span>Password</span>
-        <FormInput
-          className={style.label}
+        <FormInput<FormValues> formik={formik} accessor="email" label="Email" />
+        <FormInput<FormValues>
           formik={formik}
           accessor="password"
           label="Password"

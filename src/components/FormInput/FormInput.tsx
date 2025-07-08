@@ -1,21 +1,19 @@
 import { FormikProps } from "formik";
-import * as yup from "yup";
 import TextField from "@mui/material/TextField";
-import { yupSchema } from "../../interfaces/interfaces";
 
-type FormValues = yup.InferType<typeof yupSchema>;
+type FormInputProps<T> = {
+  formik: FormikProps<T>;
+  accessor: keyof T & string;
+  label: string;
+  className?: string;
+};
 
-export const FormInput = ({
+export const FormInput = <T extends Record<string, unknown>>({
   formik,
   accessor,
   label,
   className,
-}: {
-  formik: FormikProps<FormValues>;
-  accessor: keyof FormValues & string;
-  label: string;
-  className?: string;
-}) => {
+}: FormInputProps<T>) => {
   const error = formik.touched[accessor] && formik.errors[accessor];
 
   return (
@@ -26,10 +24,11 @@ export const FormInput = ({
         id={accessor}
         label={label}
         name={accessor}
-        type="text"
+        type={accessor.toLowerCase().includes("password") ? "password" : "text"}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[accessor]}
+        fullWidth
       />
     </div>
   );
